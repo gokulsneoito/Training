@@ -1,21 +1,16 @@
-let range = {
-  from: 1,
-  to: 10
-};
-
-range[Symbol.iterator] = function() {
-  return {
-    current: this.from,
-    last: this.to,
-    next() {
-      if (this.current <= this.last) {
-        return { done: false, value: this.current+=2 };
-      } else {
-        return { done: true };
-      }
-    }
+function sum(arg) {
+  let Sum = arg;
+  function func2(arg2) {
+    Sum += arg2;
+    return func2;
+  }
+  func2.toString = function() {
+    return currentSum;
   };
-};
-for (let num of range) {
-  document.write(num  + " "); 
+  return func2;
 }
+
+alert( sum(1)(2) ); 
+alert( sum(5)(-1)(2) ); 
+alert( sum(6)(-1)(-2)(-3) );
+alert( sum(0)(1)(2)(3)(4)(5) ); 
